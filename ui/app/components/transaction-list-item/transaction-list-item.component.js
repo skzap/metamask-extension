@@ -65,10 +65,10 @@ export default class TransactionListItem extends PureComponent {
       showRetry,
     } = this.props
     const { txParams = {} } = transaction
-    const nonce = hexToDecimal(txParams.nonce)
+    const { nonce } = txParams
 
     const nonceAndDateText = nonce
-      ? `#${nonce} - ${formatDate(transaction.time)}`
+      ? `#${hexToDecimal(nonce)} - ${formatDate(transaction.time)}`
       : formatDate(transaction.time)
 
     const fiatDisplayText = `-${fiatDisplayValue}`
