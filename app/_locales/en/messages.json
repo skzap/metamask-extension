@@ -958,6 +958,9 @@
   "sign": {
     "message": "Sign"
   },
+  "signatureRequest": {
+    "message": "Signature Request"
+  },
   "signed": {
     "message": "Signed"
   },
