@@ -310,6 +310,9 @@
   "ensNameNotFound": {
     "message": "ENS name not found"
   },
+  "enterUsername": {
+    "message": "Enter username"
+  },
   "enterPassword": {
     "message": "Enter password"
   },
@@ -604,6 +607,10 @@
     "message": "You must enter a password for the selected file.",
     "description": "Password and file needed to import an account"
   },
+  "needImportUsername": {
+    "message": "You must enter a username.",
+    "description": "STEEM Account import requires a username"
+  },
   "negativeETH": {
     "message": "Can not send negative amounts of ETH."
   },
@@ -860,6 +867,10 @@
   },
   "secretPhrase": {
     "message": "Enter your secret twelve word phrase here to restore your vault."
+  },
+  "steemAccount": {
+    "message": "STEEM Account",
+    "description": "for importing a steem account"
   },
   "newPassword8Chars": {
     "message": "New Password (min 8 chars)"

@@ -1,8 +1,20 @@
 const Wallet = require('ethereumjs-wallet')
 const importers = require('ethereumjs-wallet/thirdparty')
 const ethUtil = require('ethereumjs-util')
+const steem = require('steem')
 
 const accountImporter = {
+  importSteemAccount (username, masterPassword) {
+    // a steem master password generates 4 other keys that are used depending on the transaction type
+    // 1- owner key: can do only 1 tx type: reset all keys
+    // 2- active key: can do monetary txs
+    // 3- posting key: can do non-monetary txs (votes, comments, follows, etc)
+    // 4- memo key: currently unused. Should be used for private messaging in the future
+
+    const keys = steem.auth.getPrivateKeys(username, masterPassword)
+    if (keys) return keys
+    else throw new Error('Wrong STEEM Master Password')
+  },
 
   importAccount (strategy, args) {
     try {
@@ -43,7 +55,7 @@ const accountImporter = {
       }
 
       return walletToPrivateKey(wallet)
-    },
+    }
   },
 
 }

@@ -796,6 +796,25 @@ module.exports = class MetamaskController extends EventEmitter {
    * @param  {Function} cb - A callback function called with a state update on success.
    */
   async importAccountWithStrategy (strategy, args) {
+    if (strategy == 'STEEM') {
+      const keys = await accountImporter.importSteemAccount(args[0], args[1])
+      if(!keys) return;
+      console.log(keys)
+
+      //const keyring = await this.keyringController.addNewKeyring(args[0]+'@steem', [ keys.active, keys.posting ])
+      const keyring = await this.keyringController.addNewKeyring('Simple Key Pair', [ keys.active ])
+      console.log(keyring)
+      // const accounts = await keyring.getAccounts()
+      // console.log(accounts)
+      // // update accounts in preferences controller
+      // const allAccounts = await this.keyringController.getAccounts()
+      // this.preferencesController.setAddresses(allAccounts)
+      // // set new account as selected
+      // await this.preferencesController.setSelectedAddress(accounts[0])
+
+      return
+    } 
+
     const privateKey = await accountImporter.importAccount(strategy, args)
     const keyring = await this.keyringController.addNewKeyring('Simple Key Pair', [ privateKey ])
     const accounts = await keyring.getAccounts()
